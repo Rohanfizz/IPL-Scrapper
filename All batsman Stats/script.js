@@ -2,7 +2,7 @@ let fs = require('fs');
 let path = require('path');
 let cheerio = require('cheerio');
 let request = require('request');
-
+let scoreCardWork = require('./ScoreCardWork');
 let url = 'https://www.espncricinfo.com/series/ipl-2019-1165643';
 
 request(url,cb1);
@@ -25,7 +25,7 @@ function cb2(err,response,html){
             let buttons = cheerioSelector(allMatches[i]).find('.btn.btn-sm.btn-outline-dark.match-cta');
             let scorecard ="https://www.espncricinfo.com" + cheerioSelector(buttons[2]).attr('href');
             console.log(scorecard); // done till step 2 in poc
+            scoreCardWork.fn(scorecard);
         }
-
     }
 }
